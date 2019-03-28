@@ -2,6 +2,7 @@ package com.mazzama.apigatewayservice.controller;
 
 import com.mazzama.apigatewayservice.model.AuthResponse;
 import com.mazzama.apigatewayservice.model.LoginRequest;
+import com.mazzama.apigatewayservice.model.User;
 import com.mazzama.apigatewayservice.service.LoginService;
 
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created by azzam on 28/03/19.
@@ -43,6 +46,18 @@ public class LoginController {
     headers.setAccessControlExposeHeaders(exposeList);
     headers.set("Authorization", token);
     return new ResponseEntity<AuthResponse>(new AuthResponse(token), headers, HttpStatus.CREATED);
+  }
+
+  @CrossOrigin("*")
+  @PostMapping("/signup")
+  @ResponseBody
+  public String signup(@Valid @RequestBody LoginRequest loginRequest) {
+    User user = new User();
+    user.setEmail("default@gmail.com");
+    user.setName(loginRequest.getUsername());
+    user.setPassword(loginRequest.getPassword());
+    user = loginService.saveUser(user);
+    return user.getName();
   }
 
   @CrossOrigin("*")

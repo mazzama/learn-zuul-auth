@@ -4,12 +4,11 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      username: root
-      password: root
-      database: test
+      username: myUserAdmin
+      password: abc123
+      database: Zuul
       port: 27017
       host: localhost
-
 
 server:
   port: 8080
