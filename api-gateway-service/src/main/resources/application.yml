@@ -1,6 +1,15 @@
 spring:
   application:
     name: api-gateway-service
+  data:
+    mongodb:
+      authentication-database: admin
+      username: root
+      password: root
+      database: test
+      port: 27017
+      host: localhost
+
 
 server:
   port: 8080

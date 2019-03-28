@@ -24,7 +24,7 @@ public class ProductController {
   @GetMapping("/{userId}")
   public ProductList getProduct(@PathVariable String userId) {
 
-    logger.info("userId: ", userId);
+    logger.info("userId: {}", userId);
 
     ProductList productList = new ProductList();
     List<Product> products = new ArrayList<>();
